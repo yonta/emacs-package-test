@@ -32,16 +32,18 @@
 ;;; Install by straight, dependending company
 (straight-use-package 'company-irony)
 
-;;; Install by use-package integration, dependending company
+;;; Install by use-package, dependending company
 (straight-use-package 'use-package)
 (use-package company-c-headers :ensure t ; install company duplicately
    :config                               ; can write!
    (add-to-list 'company-backends 'company-c-headers))
 
-;;; Install from GitHub with fork and branch
+;;; Install by use-package integration from Github branch, dependending company
 (use-package company-mlton
   :straight (company-mlton :type git    ; you can!
                            :host github
                            :repo "MatthewFluet/company-mlton"
                            :fork (:repo "yonta/company-mlton"
-                                        :branch "add-smlsharp")))
+                                  :branch "add-smlsharp"))
+  :config
+  (company-mlton-basis-autodetect))
